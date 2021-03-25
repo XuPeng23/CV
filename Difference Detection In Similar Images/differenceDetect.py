@@ -153,14 +153,13 @@ if __name__ == '__main__':
     
     # 输出差异识别结果 ********************************************************
     if (func == 1)|(func == 2):
-        # M矩阵中xy方向的偏移量
+        
+		# M矩阵中xy方向的偏移量
         dX = M[0][2] # x方向 负为左比右小
         dY = M[1][2] # y方向 负为左比右小
-        # 图像的长宽
+        
+		# 图像的长宽
         height,width,channel = img1.shape    
-        # 设定监测点数量
-        num = 700
-        demo_src = np.float32([[0] * 2] * num * 1).reshape(-1,1,2)
         
         # 设定关键点的尺度
         size = int(width * 0.01)
@@ -302,7 +301,7 @@ if __name__ == '__main__':
             if numClass2 < numClass:
                 outLeft = Kmeans(diffLeft,numClass2,img1.shape[0],img1.shape[1])
             
-            # 将点数大于2的类画出来 点数不足2认为是错误点导致的
+            # 将点数大于2的类画出来 点数不足2认为是错误导致的
             for i in range(len(outLeft)):
                 if outLeft[i][2] > 2:
                     cv2.circle(output2, (int(outLeft[i][0]),int(outLeft[i][1])),int(np.sqrt(outLeft[i][2]))*size, (0, 255, 255), 2)
